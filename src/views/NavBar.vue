@@ -41,30 +41,40 @@
       </div>
     </div>
     <div class="setting-area">
-      <div class="setting-btn import-data">
+      <div class="setting-icon" @click="showSetting=!showSetting">
         <div class="svg-area">
-          <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" x="0px" y="0px">
-            <path d="M18.14,65h6.27a1,1,0,0,1,1,1V75H74.57V66a1,1,0,0,1,1-1h6.27a1,1,0,0,1,1,1V82.26a1,1,0,0,1-1,1H18.14a1,1,0,0,1-1-1V66A1,1,0,0,1,18.14,65Z"/>
-            <rect x="38.98" y="60.6" width="22.05" height="7.72" rx="1.19"/>
-            <path d="M36.56,30.88,48,17.52a3,3,0,0,1,4.08,0l11.4,13.36,11.4,13.35c.9,1.07-.23,2.4-2,2.4h-12v11a1,1,0,0,1-1,1h-20a1,1,0,0,1-1-1v-11H27.21c-1.82,0-2.95-1.33-2-2.4Z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
+            <path d="m88.988 56.559v-13.281l-7.8906-1.0898-3.8516-8.8906 4.75-6.3281-9.1992-9.7305-6.9102 5.1016-8.4609-3.5898-1.4102-8.75h-12.031l-1.4102 8.75-8.4609 3.5898-6.9102-5.1016-9.1992 9.7305 4.75 6.3281-3.8516 8.8906-7.8906 1.0898v13.281l8.1992 1.3281 3.4414 9.1406-4.5312 6.6406 9.4492 9.2188 6.4805-4.7695 8.6719 3.9102 1.0195 7.9688h12.5l1.0195-7.9688 8.6719-3.9102 6.4805 4.7695 9.4492-9.2188-4.5312-6.6406 3.4414-9.1406 8.1992-1.3281zm-38.988 11.57c-10 0-18.129-8.1289-18.129-18.129s8.1289-18.129 18.129-18.129 18.129 8.1289 18.129 18.129-8.1289 18.129-18.129 18.129z"/>
+            <path d="m63.559 50c0 7.4883-6.0703 13.559-13.559 13.559s-13.559-6.0703-13.559-13.559 6.0703-13.559 13.559-13.559 13.559 6.0703 13.559 13.559"/>
           </svg>
-        </div>
-        <h3>데이터 업로드</h3>
-        <div class="tooltip">
-          <h4>데이터 파일을 이용해 저장된 값을 불러옵니다.</h4>
         </div>
       </div>
-      <div class="setting-btn export-data">
-        <div class="svg-area">
-          <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" x="0px" y="0px">
-            <path d="M81.16,65H75a1,1,0,0,0-1,1v8.72H26V66a1,1,0,0,0-1-1H18.84a1,1,0,0,0-1,1V81.83a1,1,0,0,0,1,1H81.16a1,1,0,0,0,1-1V66A1,1,0,0,0,81.16,65Z"/>
-            <rect x="39.22" y="17.17" width="21.57" height="7.55" rx="1.16"/>
-            <path d="M36.86,53.8,48,66.86a3,3,0,0,0,4,0L63.15,53.8,74.29,40.73c.89-1-.22-2.34-2-2.34H60.61V27.6a1,1,0,0,0-1-1H40.05a1,1,0,0,0-1,1V38.39H27.71c-1.78,0-2.89,1.3-2,2.34Z"/>
-          </svg>
+      <div class="setting-box" :class="{show:showSetting}">
+        <div class="setting-btn import-data">
+          <div class="svg-area">
+            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" x="0px" y="0px">
+              <path d="M18.14,65h6.27a1,1,0,0,1,1,1V75H74.57V66a1,1,0,0,1,1-1h6.27a1,1,0,0,1,1,1V82.26a1,1,0,0,1-1,1H18.14a1,1,0,0,1-1-1V66A1,1,0,0,1,18.14,65Z"/>
+              <rect x="38.98" y="60.6" width="22.05" height="7.72" rx="1.19"/>
+              <path d="M36.56,30.88,48,17.52a3,3,0,0,1,4.08,0l11.4,13.36,11.4,13.35c.9,1.07-.23,2.4-2,2.4h-12v11a1,1,0,0,1-1,1h-20a1,1,0,0,1-1-1v-11H27.21c-1.82,0-2.95-1.33-2-2.4Z"/>
+            </svg>
+          </div>
+          <h3>데이터 업로드</h3>
+          <!-- <div class="tooltip">
+            <h4>데이터 파일을 이용해 저장된 값을 불러옵니다.</h4>
+          </div> -->
         </div>
-        <h3>데이터 다운로드</h3>
-        <div class="tooltip">
-          <h4>현재 웹에 설정한 정보를 저장합니다.</h4>
+        <div class="setting-btn export-data">
+          <div class="svg-area">
+            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" x="0px" y="0px">
+              <path d="M81.16,65H75a1,1,0,0,0-1,1v8.72H26V66a1,1,0,0,0-1-1H18.84a1,1,0,0,0-1,1V81.83a1,1,0,0,0,1,1H81.16a1,1,0,0,0,1-1V66A1,1,0,0,0,81.16,65Z"/>
+              <rect x="39.22" y="17.17" width="21.57" height="7.55" rx="1.16"/>
+              <path d="M36.86,53.8,48,66.86a3,3,0,0,0,4,0L63.15,53.8,74.29,40.73c.89-1-.22-2.34-2-2.34H60.61V27.6a1,1,0,0,0-1-1H40.05a1,1,0,0,0-1,1V38.39H27.71c-1.78,0-2.89,1.3-2,2.34Z"/>
+            </svg>
+          </div>
+          <h3>데이터 다운로드</h3>
+          <!-- <div class="tooltip">
+            <h4>현재 웹에 설정한 정보를 저장합니다.</h4>
+          </div> -->
         </div>
       </div>
     </div>
@@ -72,7 +82,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useFilterStore } from '@/store/filterData';
 
@@ -83,6 +93,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const filterStore = useFilterStore();
+    const showSetting = ref<any>(false);
 
     const menu = [
       {title:"꼬마친구", type:"mini"},
@@ -103,7 +114,8 @@ export default defineComponent({
     return {
       menu,
       goPage,
-      router
+      router,
+      showSetting
     };
   },
 });
@@ -153,6 +165,11 @@ export default defineComponent({
   color: white;
   font-weight: bold;
 }
+.svg-area{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .svg-area svg{
   width: 3em;
   height: 3em;
@@ -168,6 +185,33 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  height: 100%;
+}
+.setting-icon{
+  cursor: pointer;
+}
+
+.setting-icon:hover .svg-area svg path{
+  fill: var(--point-color2);
+}
+.setting-box{
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  bottom: calc(-4em - 0.8em - 1.4em);
+  right: 0;
+  height: calc(4em + 0.8em + 1.4em);
+  padding: 0.4em;
+  border-radius: 0.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transition: .3s;
+}
+.setting-box.show{
+  opacity: 1;
 }
 .setting-btn{
   position: relative;
@@ -177,24 +221,40 @@ export default defineComponent({
   cursor: pointer;
   border: 1px solid var(--point-color1);
   padding: 0.2em;
-  margin-left: 0.4em;
-  border-radius: 0.4em;
+  border-radius: 0.2em;
+  /* width: 9em; */
+  justify-content: space-around;
+  /* margin-bottom: 0.2em; */
 }
 .setting-btn h3{
   font-size: 0.8em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  width: 8em;
+  text-align: center;
 }
-.setting-btn .svg-area svg{
+.setting-btn .svg-area{
   width: 2em;
   height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.setting-btn .svg-area svg{
+  width: 100%;
+  height: 100%;
 }
 .tooltip{
   position: absolute;
   bottom: -1.5em;
   right: 0;
   background-color: white;
+  z-index: 1;
   border: 1px solid var(--point-color1);
   padding: 0.2em;
   opacity: 0;
+  /* transition: .3s; */
 }
 .tooltip h4{
   font-size: 0.7em;
