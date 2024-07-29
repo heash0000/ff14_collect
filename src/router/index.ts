@@ -1,20 +1,60 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import MainView from '../views/MainDataView.vue'
+import MinDataiView from '../components/MiniDataView.vue'
+import RideDataView from '@/components/RideDataView.vue'
+import MusicDataView from '@/components/MusicDataView.vue'
+import EmotionDataView from '@/components/EmotionDataView.vue'
+import HairDataView from '@/components/HairDataView.vue'
+import ChocoboDataView from '@/components/ChocoboDataView.vue'
+import FashionDataView from '@/components/FashionDataView.vue'
+import PortraitDataView from '@/components/PortraitDataView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: MainView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/mini',
+    name: 'mini',
+    component: MinDataiView
+  },
+  {
+    path: '/ride',
+    name: 'ride',
+    component: RideDataView
+  },
+  {
+    path: '/music',
+    name: 'music',
+    component: MusicDataView
+  },
+  {
+    path: '/emotion',
+    name: 'emotion',
+    component: EmotionDataView
+  },
+  {
+    path: '/hair',
+    name: 'hair',
+    component: HairDataView
+  },
+  {
+    path: '/chocobo',
+    name: 'chocobo',
+    component: ChocoboDataView
+  },
+  {
+    path: '/fashion',
+    name: 'fashion',
+    component: FashionDataView
+  },
+  {
+    path: '/portrait',
+    name: 'portrait',
+    component: PortraitDataView
+  },
 ]
 
 const router = createRouter({
