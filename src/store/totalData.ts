@@ -97,7 +97,6 @@ export const useDatabaseStore = defineStore('data', {
     setData(){
       const { cookies } = useCookies();
       const cookieData = cookies.get("ff14_collect_data");
-      console.log('cookie data >> ', cookieData);
 
       if(cookieData !== undefined && cookieData !== null){
         let userData;
@@ -117,17 +116,19 @@ export const useDatabaseStore = defineStore('data', {
         this.miniData.forEach(item => {
           if (miniIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
           }
         });
-        console.log(this.miniData.filter(item => item.check))
         this.miniCount = this.miniData.filter(item => item.check).length;
-        console.log('miniCount >> ',this.miniCount);
   
         // 탈것 넣기
         const rideIds = new Set(userData.ride.map((item: any) => item.id));
         this.rideData.forEach(item => {
           if (rideIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
           }
         });
         this.rideCount = this.rideData.filter(item => item.check).length;
@@ -137,6 +138,8 @@ export const useDatabaseStore = defineStore('data', {
         this.musicData.forEach(item => {
           if (musicIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
           }
         });
         this.musicCount = this.musicData.filter(item => item.check).length;
@@ -146,6 +149,8 @@ export const useDatabaseStore = defineStore('data', {
         this.emotionData.forEach(item => {
           if (emotionIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
           }
         });
         this.emotionCount = this.emotionData.filter(item => item.check).length;
@@ -155,6 +160,8 @@ export const useDatabaseStore = defineStore('data', {
         this.hairData.forEach(item => {
           if (hairIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
           }
         });
         this.hairCount = this.hairData.filter(item => item.check).length;
@@ -164,6 +171,8 @@ export const useDatabaseStore = defineStore('data', {
         this.chocoboData.forEach(item => {
           if (chocoboIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
           }
         });
         this.chocoboCount = this.chocoboData.filter(item => item.check).length;
@@ -173,6 +182,8 @@ export const useDatabaseStore = defineStore('data', {
         this.fashionData.forEach(item => {
           if (fashionIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
           }
         });
         this.fashionCount = this.fashionData.filter(item => item.check).length;
@@ -182,6 +193,115 @@ export const useDatabaseStore = defineStore('data', {
         this.portraitData.forEach(item => {
           if (portraitIds.has(item.id)) {
             item.check = true;
+          }else{
+            item.check = false;
+          }
+        });
+        this.portraitCount = this.portraitData.filter(item => item.check).length;
+      }
+    },
+    updateData(data:any){
+      if(data !== undefined && data !== null){
+        let userData;
+        if (typeof data === 'string') {
+          try {
+            userData = JSON.parse(data);
+          } catch (error) {
+            console.error("Error parsing user data:", error);
+            return;
+          }
+        } else {
+          userData = data;
+        }
+
+        const { cookies } = useCookies();
+        cookies.set("ff14_collect_data", JSON.stringify(userData));
+        
+        // 꼬친 넣기
+        const miniIds = new Set(userData.mini.map((item: any) => item.id));
+        this.miniData.forEach(item => {
+          if (miniIds.has(item.id)) {
+            item.check = true;
+          }
+          else{
+            item.check = false;
+          }
+        });
+        this.miniCount = this.miniData.filter(item => item.check).length;
+  
+        // 탈것 넣기
+        const rideIds = new Set(userData.ride.map((item: any) => item.id));
+        this.rideData.forEach(item => {
+          if (rideIds.has(item.id)) {
+            item.check = true;
+          }else{
+            item.check = false;
+          }
+        });
+        this.rideCount = this.rideData.filter(item => item.check).length;
+  
+        // 악보 넣기
+        const musicIds = new Set(userData.music.map((item: any) => item.id));
+        this.musicData.forEach(item => {
+          if (musicIds.has(item.id)) {
+            item.check = true;
+          }else{
+            item.check = false;
+          }
+        });
+        this.musicCount = this.musicData.filter(item => item.check).length;
+  
+        // 감표 넣기
+        const emotionIds = new Set(userData.emotion.map((item: any) => item.id));
+        this.emotionData.forEach(item => {
+          if (emotionIds.has(item.id)) {
+            item.check = true;
+          }else{
+            item.check = false;
+          }
+        });
+        this.emotionCount = this.emotionData.filter(item => item.check).length;
+  
+        // 헤어 넣기
+        const hairIds = new Set(userData.hair.map((item: any) => item.id));
+        this.hairData.forEach(item => {
+          if (hairIds.has(item.id)) {
+            item.check = true;
+          }else{
+            item.check = false;
+          }
+        });
+        this.hairCount = this.hairData.filter(item => item.check).length;
+  
+        // 초코보 갑주 넣기
+        const chocoboIds = new Set(userData.chocobo.map((item: any) => item.id));
+        this.chocoboData.forEach(item => {
+          if (chocoboIds.has(item.id)) {
+            item.check = true;
+          }else{
+            item.check = false;
+          }
+        });
+        this.chocoboCount = this.chocoboData.filter(item => item.check).length;
+  
+        // 패션소품 넣기
+        const fashionIds = new Set(userData.fashion.map((item: any) => item.id));
+        this.fashionData.forEach(item => {
+          if (fashionIds.has(item.id)) {
+            item.check = true;
+          }else{
+            item.check = false;
+          }
+        });
+        this.fashionCount = this.fashionData.filter(item => item.check).length;
+  
+        // 초상화 넣기
+        const portraitIds = new Set(userData.portrait.map((item: any) => item.id));
+        this.portraitData.forEach(item => {
+          if (portraitIds.has(item.id)) {
+            item.check = true;
+          }else{
+            item.check = false;
           }
         });
         this.portraitCount = this.portraitData.filter(item => item.check).length;

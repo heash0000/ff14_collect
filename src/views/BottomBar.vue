@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .background{
-  padding: 3em 0 3.5em 0;
+  padding: 6vh 0;
   background-color: var(--point-color1);
   margin-top: 2em;
   /* height: calc(100vh - 60px - 4em - 30vh - 6em - 2em -); */

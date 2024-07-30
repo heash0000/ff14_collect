@@ -26,9 +26,7 @@ export default defineComponent({
       databaseStore.checkMiniData(list);
     }
 
-    onMounted(() => {
-      databaseStore.setData();
-    })
+
 
     return {
       miniData,

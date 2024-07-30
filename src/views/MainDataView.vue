@@ -1,8 +1,8 @@
 <template>
   <div class="main-area container">
     <div class="total-area">
-      <div class="total-target" v-for="(data, index) in totalData" :key="index" @click="goPage(data.type)">
-        <div class="total-title">
+      <div class="total-target" v-for="(data, index) in totalData" :key="index">
+        <div class="total-title" @click="goPage(data.type)">
           <div class="svg-area" v-if="data.type === 'mini'">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
               <g>
@@ -70,11 +70,16 @@
           <!-- <h2>{{ data.title }}</h2> -->
         </div>
         <div class="total-percent">
-          <div class="count-area">
-            <h2>{{data.count}}/{{ data.allCount }}</h2>
+          <div class="percent-title">
+            <h2>{{ data.title }}</h2>
           </div>
-          <div class="percent-area">
-            <h3>{{roundToTwoDecimalPlaces((data.count / data.allCount)*100)}}%</h3>
+          <div class="percent-content">
+            <div class="count-area">
+              <h2>{{data.count}}/{{ data.allCount }}</h2>
+            </div>
+            <div class="percent-area">
+              <h3>{{roundToTwoDecimalPlaces((data.count / data.allCount)*100)}}%</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -110,7 +115,6 @@ export default defineComponent({
     })
 
     function roundToTwoDecimalPlaces(num:any) {
-      // console.log('num >> ', num);
       // 숫자를 소수 둘째자리에서 반올림
       const roundedNum = Math.round(num * 100) / 100;
       
@@ -132,10 +136,6 @@ export default defineComponent({
     function goPage(type:string) {
       router.push({'name':type});
     }
-
-    onMounted(() => {
-      databaseStore.setData();
-    })
     
     return {
       totalData,
@@ -172,6 +172,7 @@ export default defineComponent({
   justify-content: center;
   border-radius: 0.5em;
   background-color: var(--point-color4);
+  cursor: pointer;
   /* height: 2em; */
 }
 .total-title h2{
@@ -182,12 +183,17 @@ export default defineComponent({
   display: flex;
   width: 50%;
   align-items: center;
-  padding: 3em 0.5em;
+  /* padding: 3em 0.5em; */
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 }
-.total-percent > div{
-  width: 50%;
+.percent-title h2{
+  font-size: 1.2em;
+  font-weight: bold;
+  word-break: keep-all;
+}
+.percent-content{
+  /* width: 50%; */
 }
 .count-area h2{
   font-size: 1.2em;

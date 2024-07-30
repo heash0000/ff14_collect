@@ -95,6 +95,7 @@
             </svg>
           </div>
           <h3>데이터 업로드</h3>
+          <input type="file" ref="fileInput" @change="handleFileChange" style="display: none" accept=".json">
           <!-- <div class="tooltip">
             <h4>데이터 파일을 이용해 저장된 값을 불러옵니다.</h4>
           </div> -->
@@ -118,9 +119,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, computed, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useFilterStore } from '@/store/filterData';
+import { useDatabaseStore } from '@/store/totalData';
 import { useCookies } from "vue3-cookies";
 
 export default defineComponent({
@@ -132,6 +134,8 @@ export default defineComponent({
     const filterStore = useFilterStore();
     const showSetting = ref<any>(false);
     const { cookies } = useCookies();
+    const fileInput = ref();
+    const databaseStore = useDatabaseStore();
 
     const menu = [
       {title:"꼬마친구", type:"mini"},
@@ -150,23 +154,56 @@ export default defineComponent({
     }
 
     function importData(){
-      //
+      fileInput.value.click();
     }
+
+    const handleFileChange = async (event:any) => {
+      let fileContent;
+      const file = event.target.files[0];
+      if (file && file.type === 'application/json') {
+        try {
+          const content = await file.text();
+          fileContent = JSON.parse(content);
+          databaseStore.updateData(fileContent);
+        } catch (error) {
+          console.error('Error reading JSON file:', error);
+        }
+      } else {
+        console.error('Please select a valid JSON file.');
+      }
+    };
 
     // 데이터 다운로드
     function exportData(){
       const cookieData = cookies.get("ff14_collect_data");
-      console.log('cookie >> ', cookieData);
       if(cookieData !== undefined && cookieData !== null){
-        console.log('done');
+        const dataStr = JSON.stringify(cookieData, null, 2);
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "ff14_collect_data.json";
+        a.click();
+
+        // URL 객체를 해제하여 메모리 누수를 방지합니다.
+        URL.revokeObjectURL(url);
       }
     }
+
+    onMounted(() => {
+      databaseStore.setData();
+    })
 
     return {
       menu,
       goPage,
       router,
-      showSetting
+      showSetting,
+      importData, 
+      exportData,
+      fileInput,
+      handleFileChange
     };
   },
 });
