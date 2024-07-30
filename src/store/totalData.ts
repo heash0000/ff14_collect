@@ -121,6 +121,7 @@ export const useDatabaseStore = defineStore('data', {
         });
         console.log(this.miniData.filter(item => item.check))
         this.miniCount = this.miniData.filter(item => item.check).length;
+        console.log('miniCount >> ',this.miniCount);
   
         // 탈것 넣기
         const rideIds = new Set(userData.ride.map((item: any) => item.id));

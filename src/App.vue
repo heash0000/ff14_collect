@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6, p, b, u, i, ul, li, input, a, button, textarea {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font: inherit;
-  line-height: 1.4em;
+  line-height: 1.6em;
   /* font-size: 100%; */
 }
 :root{
