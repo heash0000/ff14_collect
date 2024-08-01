@@ -58,7 +58,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/ff14-collect/'),
+  history: createWebHistory(),
   routes
 })
 
